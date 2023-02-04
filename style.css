@@ -1,3 +1,17 @@
 body{
     margin: 0;
 }
+/* #gridContainer {
+    display: flex;
+    max-width: 640px;
+    max-height: 640px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+  }
+  
+  .gridbox {
+    height: 20px;
+    width: 20px;
+    background-color: #5f6061;
+    flex-shrink: 0;
+  } */
