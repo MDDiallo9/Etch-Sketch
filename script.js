@@ -18,7 +18,6 @@ for (let i = 0; i < x * x; i++) {
     box.className = 'gridbox';
     box.style = `height : ${boxSize}px ;width:${boxSize}px;background-color: ${defaultBg};flex-shrink:0`
     gridContainer.appendChild(box)
-    console.log("works")
 }
 gridContainer.style = `display:flex ; max-width: ${gridSize}px;max-height:${gridSize}px;flex-wrap:wrap;box-sizing: border-box`
 for (let i = 0; i < bgbox.length; i++) {
@@ -47,11 +46,9 @@ newGridButton.addEventListener("click",function (e){
 // color change
 baseColor.addEventListener("input", function(e) {
     drawColor = baseColor.value
-    console.log('color change')
 });
 bgColor.addEventListener("input", function(e) {
     defaultBg = bgColor.value
-    console.log('color change')
-  });
+});
 drawGrid()
 
