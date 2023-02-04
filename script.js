@@ -1,37 +1,50 @@
-const start = document.querySelector('#start')
+const body = document.querySelector("#body")
+const gridContainer = document.querySelector("#gridContainer")
+const bgbox = document.getElementsByClassName("gridbox")
+const newGridButton = document.querySelector("#newGrid")
+const baseColor = document.querySelector("#base")
+const bgColor = document.querySelector("#bg").value
+let drawColor = baseColor.value
+let gridBg = ""
+let gridSize = 32 * 20
+let defaultBg = bgColor
 
-start.addEventListener("click",() => {
-    grid();
-    console.log("pressed");
-    const body = document.querySelector("body")
-    const reset = document.createElement("button")
-    reset.innerText = "RESET"
-    body.appendChild(reset)
-    reset.addEventListener("click",function (e){bgbox.style.backgroundColor = "black"})
 
-    
-},{once : true})
-
-function grid(){
-    function boxer(){ for (let i = 0; i < 1024; i++) {
-        let box = document.createElement('div')
-        box.className = 'gridbox';
-        box.style = "height : 20px ;width:20px;background-color: #c7bfc7; border: solid black 1px;flex-shrink:0"
-        grid.appendChild(box)
-        console.log("works")
-    }
-    return
+// DefaultGrid
+function drawGrid(x = 32,gridSize = 32 * 20){
+for (let i = 0; i < x * x; i++) {
+    let box = document.createElement('div')
+    box.className = 'gridbox';
+    box.style = `height : 20px ;width:20px;background-color: ${defaultBg};flex-shrink:0`
+    gridContainer.appendChild(box)
+    console.log("works")
 }
-    const body = document.querySelector("body")
-    const grid = document.createElement('div')
-    grid.style = "display:flex ; max-width: 704px;max-height:704px;flex-wrap:wrap;box-sizing: border-box"
-    body.appendChild(grid)
-    const boxes = boxer()
-    const bgbox = document.querySelectorAll(".gridbox")
-    for (let i = 0; i < bgbox.length; i++) {
-        bgbox[i].addEventListener("mouseover", function (e) {
-            this.style.backgroundColor = "black";
-        });
+gridContainer.style = `display:flex ; max-width: ${gridSize}px;max-height:${gridSize}px;flex-wrap:wrap;box-sizing: border-box`
+for (let i = 0; i < bgbox.length; i++) {
+    bgbox[i].addEventListener("mouseover", function (e) {
+        this.style.backgroundColor = drawColor;
+    });
+}
+}
+// Une fonction qui va clean gridContainer
+
+function gridClean() {
+    while (gridContainer.firstChild) {
+      gridContainer.removeChild(gridContainer.firstChild);
     }
 }
+
+// Bouton newGrid
+newGridButton.addEventListener("click",function (e){
+    gridClean()
+    let pvalue = prompt("Grid size ?")
+    let gridSize = pvalue * 20
+    if (pvalue > 100){pvalue = 100}
+    drawGrid(pvalue,gridSize)
+})
+// color change
+baseColor.addEventListener("input", function(e) {
+    defaultBg = bgColor.value;
+  });
+drawGrid()
 
