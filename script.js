@@ -3,19 +3,20 @@ const gridContainer = document.querySelector("#gridContainer")
 const bgbox = document.getElementsByClassName("gridbox")
 const newGridButton = document.querySelector("#newGrid")
 const baseColor = document.querySelector("#base")
-const bgColor = document.querySelector("#bg").value
+const bgColor = document.querySelector("#bg")
 let drawColor = baseColor.value
 let gridBg = ""
 let gridSize = 32 * 20
-let defaultBg = bgColor
+let defaultBg = bgColor.value
+let boxSize = ""
 
 
 // DefaultGrid
-function drawGrid(x = 32,gridSize = 32 * 20){
+function drawGrid(x = 32,gridSize = 32 * 20,boxSize= 20){
 for (let i = 0; i < x * x; i++) {
     let box = document.createElement('div')
     box.className = 'gridbox';
-    box.style = `height : 20px ;width:20px;background-color: ${defaultBg};flex-shrink:0`
+    box.style = `height : ${boxSize}px ;width:${boxSize}px;background-color: ${defaultBg};flex-shrink:0`
     gridContainer.appendChild(box)
     console.log("works")
 }
@@ -38,13 +39,19 @@ function gridClean() {
 newGridButton.addEventListener("click",function (e){
     gridClean()
     let pvalue = prompt("Grid size ?")
-    let gridSize = pvalue * 20
+    // let gridSize = pvalue * 20
+    let boxSize = gridSize / pvalue
     if (pvalue > 100){pvalue = 100}
-    drawGrid(pvalue,gridSize)
+    drawGrid(pvalue,gridSize,boxSize)
 })
 // color change
 baseColor.addEventListener("input", function(e) {
-    defaultBg = bgColor.value;
+    drawColor = baseColor.value
+    console.log('color change')
+});
+bgColor.addEventListener("input", function(e) {
+    defaultBg = bgColor.value
+    console.log('color change')
   });
 drawGrid()
 
