@@ -37,10 +37,10 @@ function gridClean() {
 // Bouton newGrid
 newGridButton.addEventListener("click",function (e){
     gridClean()
-    let pvalue = prompt("Grid size ?")
+    let pvalue = prompt("Grid size ? max 100")
     // let gridSize = pvalue * 20
-    let boxSize = gridSize / pvalue
     if (pvalue > 100){pvalue = 100}
+    let boxSize = gridSize / pvalue
     drawGrid(pvalue,gridSize,boxSize)
 })
 // color change
