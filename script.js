@@ -40,8 +40,10 @@ newGridButton.addEventListener("click",function (e){
     let pvalue = prompt("Grid size ? max 100")
     // let gridSize = pvalue * 20
     if (pvalue > 100){pvalue = 100}
+    if (isNaN(pvalue)){alert("Please input a number");drawGrid()}
     let boxSize = gridSize / pvalue
     drawGrid(pvalue,gridSize,boxSize)
+
 })
 // color change
 baseColor.addEventListener("input", function(e) {
